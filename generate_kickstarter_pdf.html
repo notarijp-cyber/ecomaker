@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMaker - Kickstarter Campaign</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .page {
+            background: white;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            page-break-after: always;
+        }
+
+        .cover {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #00c851 0%, #007E33 100%);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .cover h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cover h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cover .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        h1 {
+            color: #2c5f2d;
+            border-bottom: 3px solid #00c851;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c5f2d;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #4a7c59;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            border: 2px solid #00c851;
+            border-radius: 10px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .feature-card h4 {
+            color: #2c5f2d;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #e9ecef, #dee2e6);
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 14px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cost-table th,
+        .cost-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .cost-table th {
+            background: #00c851;
+            color: white;
+            font-weight: bold;
+        }
+
+        .cost-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .total-row {
+            background: #2c5f2d !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .reward-levels {
+            display: grid;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .reward-card {
+            border: 2px solid #00c851;
+            border-radius: 15px;
+            padding: 25px;
+            background: linear-gradient(135deg, #00c851, #007E33);
+            color: white;
+        }
+
+        .reward-card h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .reward-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .roadmap {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-left: 5px solid #00c851;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-date {
+            background: #00c851;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #00c851, #007E33);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .metric-number {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2c5f2d, #1a3f1f);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-button {
+            background: #00c851;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #007E33;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #00c851, #007E33);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pagina Copertina -->
+    <div class="cover">
+        <div class="logo">🌱</div>
+        <h1>EcoMaker</h1>
+        <h2>Rivoluzione Sostenibile Attraverso l'Intelligenza Artificiale</h2>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Materiali Riconosciuti</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">94%</span>
+                <span class="stat-label">Precisione AI</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Progetti Generati</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">€250K</span>
+                <span class="stat-label">Obiettivo Kickstarter</span>
+            </div>
+        </div>
+
+        <p style="font-size: 18px; margin-top: 30px;">
+            La prima piattaforma che trasforma i rifiuti in risorse attraverso AI avanzata, 
+            gamificazione ecosostenibile e tecnologie di realtà aumentata.
+        </p>
+
+        <p style="font-size: 14px; margin-top: 40px; opacity: 0.8;">
+            © 2025 Jacopo Primo Notari - Tutti i diritti riservati
+        </p>
+    </div>
+
+    <!-- Pagina Panoramica -->
+    <div class="page">
+        <h1>🎯 Panoramica del Progetto</h1>
+        
+        <h2>La Sfida Globale</h2>
+        <p>Ogni anno, l'umanità produce oltre 2 miliardi di tonnellate di rifiuti urbani, con una crescita prevista del 70% entro il 2050. Il 90% di questi rifiuti potrebbe essere trasformato in risorse preziose attraverso l'upcycling creativo, ma mancano gli strumenti per rendere questo processo accessibile e scalabile.</p>
+
+        <h2>La Soluzione EcoMaker</h2>
+        <p>EcoMaker rivoluziona il modo in cui vediamo e gestiamo i rifiuti attraverso:</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>🤖 AI Riconoscimento Materiali</h4>
+                <p>Sistema di machine learning proprietario che identifica oltre 50 materiali diversi con precisione del 94%, suggerendo automaticamente progetti di upcycling personalizzati.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h4>🎮 Gamificazione Sostenibile</h4>
+                <p>Sistema completo di achievement, badge dinamici e sfide personalizzate che rendono la sostenibilità coinvolgente e premiante.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h4>🔐 Database Crittografato 150424</h4>
+                <p>Sistema proprietario di protezione IP con crittografia militare AES-256-CBC per salvaguardare innovazioni e brevetti.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h4>📱 Realtà Aumentata</h4>
+                <p>Visualizzazione 3D dei progetti di trasformazione attraverso AR, con guide step-by-step immersive.</p>
+            </div>
+        </div>
+
+        <h2>Trazione e Validazione</h2>
+        <ul>
+            <li><strong>100+ Beta Tester</strong> attivi con feedback positivo al 96%</li>
+            <li><strong>2.500+ Progetti</strong> già generati dalla AI</li>
+            <li><strong>15 Partnership</strong> in discussione con università e aziende</li>
+            <li><strong>€50K+</strong> interesse pre-seed già espresso</li>
+        </ul>
+    </div>
+
+    <!-- Pagina Funzionalità -->
+    <div class="page">
+        <h1>🚀 Funzionalità Innovative</h1>
+
+        <h2>Sistema AI Proprietario</h2>
+        <div class="screenshot-placeholder">
+            📸 Screenshot: Dashboard AI con riconoscimento materiali in tempo reale
+            <br>Mostra: Camera attiva, overlay AI, materiali identificati, progetti suggeriti
+        </div>
+
+        <h3>🔍 Riconoscimento Materiali Avanzato</h3>
+        <ul>
+            <li><strong>50+ Materiali Supportati</strong>: Plastica, metallo, legno, tessuti, vetro, carta, elettronici</li>
+            <li><strong>Precisione 94%</strong>: Machine learning offline-first con training continuo</li>
+            <li><strong>Analisi Multi-Modale</strong>: Visiva, tattile e chimica combinata</li>
+            <li><strong>Suggerimenti Intelligenti</strong>: Progetti personalizzati basati su materiali disponibili</li>
+        </ul>
+
+        <h3>⚡ Generazione Progetti Automatica</h3>
+        <div class="screenshot-placeholder">
+            📸 Screenshot: Interfaccia generazione progetti
+            <br>Mostra: Input materiali, progetti generati, istruzioni step-by-step, anteprima 3D
+        </div>
+
+        <ul>
+            <li><strong>Combinazioni 1-7 Materiali</strong>: Algoritmo che gestisce tutte le possibili combinazioni</li>
+            <li><strong>10.000+ Progetti Base</strong>: Database offline per funzionamento autonomo</li>
+            <li><strong>Istruzioni Dettagliate</strong>: Guide passo-passo con immagini e video</li>
+            <li><strong>Calcolo Impatto</strong>: Stima CO2 risparmiata e valore economico creato</li>
+        </ul>
+
+        <h2>Gamificazione Eco-Sostenibile</h2>
+        <div class="screenshot-placeholder">
+            📸 Screenshot: Sistema gamificazione
+            <br>Mostra: Eco-badges, classifiche, sfide personalizzate, achievement progressivi
+        </div>
+
+        <h3>🏆 Sistema Achievement</h3>
+        <ul>
+            <li><strong>Badge Dinamici SVG</strong>: Animazioni e effetti visivi coinvolgenti</li>
+            <li><strong>Micro-Interazioni</strong>: Feedback aptico e particelle animate</li>
+            <li><strong>Classifiche Globali</strong>: Competizione amichevole tra eco-makers</li>
+            <li><strong>Sfide Personalizzate</strong>: AI che adatta obiettivi al comportamento utente</li>
+        </ul>
+    </div>
+
+    <!-- Pagina Tecnologie -->
+    <div class="page">
+        <h1>💻 Stack Tecnologico</h1>
+
+        <h2>Architettura Frontend</h2>
+        <ul>
+            <li><strong>React 18 + TypeScript</strong>: Performance e type safety</li>
+            <li><strong>Tailwind CSS + shadcn/ui</strong>: Design system moderno e accessibile</li>
+            <li><strong>Three.js + A-Frame</strong>: Realtà aumentata e visualizzazioni 3D</li>
+            <li><strong>Framer Motion</strong>: Animazioni fluide e micro-interazioni</li>
+        </ul>
+
+        <h2>Backend Scalabile</h2>
+        <ul>
+            <li><strong>Express.js + Node.js</strong>: API RESTful ad alte prestazioni</li>
+            <li><strong>PostgreSQL + Drizzle ORM</strong>: Database relazionale con type safety</li>
+            <li><strong>WebSocket</strong>: Real-time updates per gamificazione</li>
+            <li><strong>Crittografia AES-256</strong>: Sicurezza militare per IP protection</li>
+        </ul>
+
+        <h2>Integrazione AI/ML</h2>
+        <div class="screenshot-placeholder">
+            📸 Screenshot: Architettura AI/ML
+            <br>Mostra: Diagramma flusso AI, training pipeline, API integrations
+        </div>
+
+        <ul>
+            <li><strong>OpenAI GPT-4o</strong>: Generazione contenuti e analisi avanzata</li>
+            <li><strong>Google Vision API</strong>: Riconoscimento immagini professionale</li>
+            <li><strong>ML Engine Proprietario</strong>: Classificazione materiali offline</li>
+            <li><strong>TensorFlow.js</strong>: ML on-device per privacy e prestazioni</li>
+        </ul>
+
+        <h2>Infrastruttura Cloud</h2>
+        <ul>
+            <li><strong>Replit Deployments</strong>: Hosting scalabile e CI/CD automatizzato</li>
+            <li><strong>CDN Globale</strong>: Prestazioni ottimali worldwide</li>
+            <li><strong>Backup Crittografati</strong>: Disaster recovery completo</li>
+            <li><strong>Monitoring 24/7</strong>: Uptime 99.9% garantito</li>
+        </ul>
+
+        <h2>Sicurezza e Compliance</h2>
+        <ul>
+            <li><strong>GDPR Compliant</strong>: Privacy by design</li>
+            <li><strong>ISO 27001</strong>: Certificazione sicurezza in corso</li>
+            <li><strong>Penetration Testing</strong>: Audit trimestrali</li>
+            <li><strong>Bug Bounty Program</strong>: Community security</li>
+        </ul>
+    </div>
+
+    <!-- Pagina Costi -->
+    <div class="page">
+        <h1>💰 Analisi Costi di Sviluppo</h1>
+
+        <h2>Breakdown Dettagliato Investimento</h2>
+        
+        <table class="cost-table">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Ore</th>
+                    <th>Tariffa/Ora</th>
+                    <th>Costo Totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Ricerca e Progettazione</strong></td>
+                    <td>40</td>
+                    <td>€50</td>
+                    <td>€4.500</td>
+                </tr>
+                <tr>
+                    <td>• Architecture Design</td>
+                    <td>40</td>
+                    <td>€50</td>
+                    <td>€2.000</td>
+                </tr>
+                <tr>
+                    <td>• UI/UX Research</td>
+                    <td>30</td>
+                    <td>€50</td>
+                    <td>€1.500</td>
+                </tr>
+                <tr>
+                    <td>• Technology Stack</td>
+                    <td>20</td>
+                    <td>€50</td>
+                    <td>€1.000</td>
+                </tr>
+                <tr>
+                    <td><strong>Sviluppo Backend</strong></td>
+                    <td>340</td>
+                    <td>€50</td>
+                    <td>€17.000</td>
+                </tr>
+                <tr>
+                    <td>• API Development</td>
+                    <td>120</td>
+                    <td>€50</td>
+                    <td>€6.000</td>
+                </tr>
+                <tr>
+                    <td>• Database Design</td>
+                    <td>60</td>
+                    <td>€50</td>
+                    <td>€3.000</td>
+                </tr>
+                <tr>
+                    <td>• AI Integration</td>
+                    <td>80</td>
+                    <td>€50</td>
+                    <td>€4.000</td>
+                </tr>
+                <tr>
+                    <td>• Encrypted Database 150424</td>
+                    <td>50</td>
+                    <td>€50</td>
+                    <td>€2.500</td>
+                </tr>
+                <tr>
+                    <td>• Authentication & Security</td>
+                    <td>30</td>
+                    <td>€50</td>
+                    <td>€1.500</td>
+                </tr>
+                <tr>
+                    <td><strong>Sviluppo Frontend</strong></td>
+                    <td>330</td>
+                    <td>€50</td>
+                    <td>€16.500</td>
+                </tr>
+                <tr>
+                    <td>• React Components</td>
+                    <td>150</td>
+                    <td>€50</td>
+                    <td>€7.500</td>
+                </tr>
+                <tr>
+                    <td>• Responsive Design</td>
+                    <td>50</td>
+                    <td>€50</td>
+                    <td>€2.500</td>
+                </tr>
+                <tr>
+                    <td>• AR Integration</td>
+                    <td>60</td>
+                    <td>€50</td>
+                    <td>€3.000</td>
+                </tr>
+                <tr>
+                    <td>• Gamification System</td>
+                    <td>40</td>
+                    <td>€50</td>
+                    <td>€2.000</td>
+                </tr>
+                <tr>
+                    <td>• Advanced Animations</td>
+                    <td>30</td>
+                    <td>€50</td>
+                    <td>€1.500</td>
+                </tr>
+                <tr>
+                    <td><strong>Sistemi AI/ML</strong></td>
+                    <td>230</td>
+                    <td>€50</td>
+                    <td>€11.500</td>
+                </tr>
+                <tr>
+                    <td>• Material Recognition</td>
+                    <td>80</td>
+                    <td>€50</td>
+                    <td>€4.000</td>
+                </tr>
+                <tr>
+                    <td>• Project Generation</td>
+                    <td>60</td>
+                    <td>€50</td>
+                    <td>€3.000</td>
+                </tr>
+                <tr>
+                    <td>• Environmental Calculator</td>
+                    <td>40</td>
+                    <td>€50</td>
+                    <td>€2.000</td>
+                </tr>
+                <tr>
+                    <td>• Recommendation Engine</td>
+                    <td>50</td>
+                    <td>€50</td>
+                    <td>€2.500</td>
+                </tr>
+                <tr>
+                    <td><strong>Testing & QA</strong></td>
+                    <td>200</td>
+                    <td>€25</td>
+                    <td>€5.000</td>
+                </tr>
+                <tr>
+                    <td><strong>DevOps & Deployment</strong></td>
+                    <td>160</td>
+                    <td>€20</td>
+                    <td>€3.000</td>
+                </tr>
+                <tr>
+                    <td><strong>Documentazione</strong></td>
+                    <td>70</td>
+                    <td>€25</td>
+                    <td>€1.750</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>TOTALE SVILUPPO</strong></td>
+                    <td><strong>1.370</strong></td>
+                    <td><strong>-</strong></td>
+                    <td><strong>€59.250</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Costi Operativi Mensili</h2>
+        <table class="cost-table">
+            <tr><td>Hosting Cloud + CDN</td><td>€200</td></tr>
+            <tr><td>API Costs (OpenAI + Google)</td><td>€500</td></tr>
+            <tr><td>Database PostgreSQL</td><td>€100</td></tr>
+            <tr><td>Monitoring & Analytics</td><td>€50</td></tr>
+            <tr><td>Security & Backup</td><td>€50</td></tr>
+            <tr class="total-row"><td><strong>Totale Mensile</strong></td><td><strong>€900</strong></td></tr>
+        </table>
+    </div>
+
+    <!-- Pagina Livelli Donazione -->
+    <div class="page">
+        <h1>🎁 Livelli di Donazione</h1>
+
+        <div class="reward-levels">
+            <div class="reward-card">
+                <h4>🌱 Eco-Supporter</h4>
+                <div class="reward-price">€25</div>
+                <ul>
+                    <li>Accesso anticipato (3 mesi prima)</li>
+                    <li>Badge Founder esclusivo</li>
+                    <li>Newsletter mensile sviluppo</li>
+                    <li>Certificato digitale partecipazione</li>
+                </ul>
+            </div>
+
+            <div class="reward-card">
+                <h4>🌿 Green-Innovator</h4>
+                <div class="reward-price">€75</div>
+                <ul>
+                    <li>Tutto del livello precedente</li>
+                    <li>Account Premium 1 anno (€120 valore)</li>
+                    <li>Consulenza sostenibilità personalizzata</li>
+                    <li>Kit materiali starter</li>
+                    <li>Nome nei ringraziamenti app</li>
+                </ul>
+            </div>
+
+            <div class="reward-card">
+                <h4>🌳 Eco-Pioneer</h4>
+                <div class="reward-price">€150</div>
+                <ul>
+                    <li>Tutto del livello precedente</li>
+                    <li>Licenza commerciale uso aziendale</li>
+                    <li>Workshop esclusivo online</li>
+                    <li>Merchandising eco completo</li>
+                    <li>Beta tester funzionalità esclusive</li>
+                </ul>
+            </div>
+
+            <div class="reward-card">
+                <h4>🌟 Sustainability-Champion</h4>
+                <div class="reward-price">€300</div>
+                <ul>
+                    <li>Tutto del livello precedente</li>
+                    <li>Mentorship con esperti settore</li>
+                    <li>Voto decisioni prodotto</li>
+                    <li>Hardware kit AR incluso</li>
+                    <li>Invito evento lancio</li>
+                </ul>
+            </div>
+
+            <div class="reward-card">
+                <h4>💎 Eco-Visionary</h4>
+                <div class="reward-price">€500</div>
+                <ul>
+                    <li>Tutto del livello precedente</li>
+                    <li>Equity stake 0.1% società</li>
+                    <li>Advisory board partecipazione</li>
+                    <li>Naming rights funzionalità</li>
+                    <li>Partnership commerciale preferenziale</li>
+                </ul>
+            </div>
+
+            <div class="reward-card">
+                <h4>🏆 Green-Titan</h4>
+                <div class="reward-price">€1.000+</div>
+                <ul>
+                    <li>Equity stake 0.25%+ società</li>
+                    <li>Consultancy retainer mensile</li>
+                    <li>White-label license</li>
+                    <li>Co-development nuove features</li>
+                    <li>Revenue sharing agreements</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagina Roadmap -->
+    <div class="page">
+        <h1>🛤️ Roadmap di Sviluppo</h1>
+
+        <div class="roadmap">
+            <div class="roadmap-item">
+                <div class="roadmap-date">Q1 2025</div>
+                <div>
+                    <h3>Foundation Launch</h3>
+                    <p>Lancio pubblico piattaforma web, onboarding primi 1.000 utenti, partnerships universitarie, sistema feedback attivo.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-date">Q2 2025</div>
+                <div>
+                    <h3>Mobile Expansion</h3>
+                    <p>App iOS/Android native, camera AI migliorata, localizzazione 5 lingue europee, 10.000 utenti target.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-date">Q3 2025</div>
+                <div>
+                    <h3>B2B Integration</h3>
+                    <p>Dashboard aziendali, API B2B, partnerships Fortune 500, certificazioni ambientali, break-even revenue.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-date">Q4 2025</div>
+                <div>
+                    <h3>Global Scale</h3>
+                    <p>Espansione 10+ paesi, 100.000 utenti community, programmi educativi, centri fisici collegati.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-date">2026</div>
+                <div>
+                    <h3>Ecosystem Complete</h3>
+                    <p>Marketplace globale, criptovaluta verde, realtà virtuale, AI quantum, network repair cafés, IPO preparation.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>🎯 Milestone Finanziarie</h2>
+        <div class="impact-metrics">
+            <div class="metric-card">
+                <span class="metric-number">€50K</span>
+                Mobile App Development
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">€100K</span>
+                B2B Platform Launch
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">€200K</span>
+                Global Expansion
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">€500K</span>
+                Complete Ecosystem
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagina Impatto -->
+    <div class="page">
+        <h1>🌍 Impatto Ambientale</h1>
+
+        <h2>Proiezioni di Impatto</h2>
+        <div class="screenshot-placeholder">
+            📊 Grafico: Crescita impatto ambientale nel tempo
+            <br>Mostra: CO2 risparmiata, rifiuti evitati, valore economico creato
+        </div>
+
+        <div class="impact-metrics">
+            <div class="metric-card">
+                <span class="metric-number">500</span>
+                Tonnellate CO₂ risparmiate/anno
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">50K</span>
+                Tonnellate rifiuti trasformati
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">€10M</span>
+                Valore economico generato
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">1M</span>
+                Progetti sostenibili creati
+            </div>
+        </div>
+
+        <h2>Certificazioni e Validazioni</h2>
+        <ul>
+            <li><strong>Life Cycle Assessment (LCA)</strong>: Validazione scientifica impatto progetti</li>
+            <li><strong>Carbon Trust Certification</strong>: Verifica calcoli emissioni CO₂</li>
+            <li><strong>B-Corp Certification</strong>: Benefit corporation per impatto sociale</li>
+            <li><strong>UN SDGs Alignment</strong>: Contributo agli Obiettivi Sviluppo Sostenibile</li>
+        </ul>
+
+        <h2>Partnerships Ambientali</h2>
+        <ul>
+            <li><strong>Legambiente</strong>: Validazione metodologie sostenibilità</li>
+            <li><strong>Ellen MacArthur Foundation</strong>: Economia circolare</li>
+            <li><strong>Climate Action Network</strong>: Reporting impatto climatico</li>
+            <li><strong>European Environment Agency</strong>: Standard europei</li>
+        </ul>
+
+        <h2>Ricerca e Innovazione</h2>
+        <div class="screenshot-placeholder">
+            🔬 Schema: Pipeline ricerca materiali innovativi
+            <br>Mostra: Laboratorio virtuale, test sostenibilità, database materiali
+        </div>
+
+        <p>EcoMaker non si limita a ottimizzare l'esistente, ma investe attivamente in ricerca per:</p>
+        <ul>
+            <li><strong>Nuovi Biomateriali</strong>: Database bioplastiche e materiali compostabili</li>
+            <li><strong>Algoritmi Predittivi</strong>: AI per prevedere trend sostenibilità</li>
+            <li><strong>IoT Integration</strong>: Sensori per monitoraggio automatico rifiuti</li>
+            <li><strong>Blockchain Traceability</strong>: Tracciabilità completa materiali</li>
+        </ul>
+    </div>
+
+    <!-- Pagina Call to Action -->
+    <div class="page">
+        <div class="cta-section">
+            <h1 style="color: white; border: none;">🚀 Unisciti alla Rivoluzione Verde!</h1>
+            
+            <p style="font-size: 20px; margin: 30px 0;">
+                <strong>EcoMaker</strong> non è solo una app, è un movimento globale verso un futuro sostenibile.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 48px;">🌱</div>
+                    <h3>Tecnologia Rivoluzionaria</h3>
+                    <p>AI che cambierà come vediamo i rifiuti</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px;">🌍</div>
+                    <h3>Impatto Globale</h3>
+                    <p>Milioni di tonnellate CO₂ risparmiate</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px;">💰</div>
+                    <h3>Opportunità Business</h3>
+                    <p>Settore cleantech da €2T globali</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px;">🏆</div>
+                    <h3>Legacy Futuro</h3>
+                    <p>Pianeta migliore per prossime generazioni</p>
+                </div>
+            </div>
+
+            <h2 style="color: white;">🎯 Obiettivo: €250.000</h2>
+            <p style="font-size: 18px;">
+                Questi fondi ci permetteranno di lanciare l'app mobile, espandere in Europa, 
+                creare partnerships industriali e sviluppare funzionalità avanzate di AI.
+            </p>
+
+            <div style="margin: 40px 0;">
+                <button class="cta-button">💚 SOSTIENI ORA SU KICKSTARTER</button>
+                <button class="cta-button">📱 PROVA LA BETA</button>
+            </div>
+
+            <h3 style="color: white;">⏰ Early Bird Special</h3>
+            <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+                <li><strong>Prime 48 ore</strong>: 30% sconto tutti i livelli</li>
+                <li><strong>Prima settimana</strong>: 20% sconto livelli €150+</li>
+                <li><strong>Prime 100 donazioni</strong>: Beta VIP gratuito</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <h2>📧 Contatti</h2>
+            <p>
+                <strong>Founder:</strong> Jacopo Primo Notari<br>
+                <strong>Email:</strong> info@ecomaker.tech<br>
+                <strong>Website:</strong> www.ecomaker.tech<br>
+                <strong>LinkedIn:</strong> /company/ecomaker-tech
+            </p>
+            
+            <p style="margin-top: 30px; font-size: 14px; color: #6c757d;">
+                © 2025 Jacopo Primo Notari. Tutti i diritti riservati. EcoMaker e Database 150424 sono proprietà intellettuali protette.
+            </p>
+            
+            <p style="font-size: 18px; font-weight: bold; color: #2c5f2d; margin-top: 20px;">
+                🌱 Il futuro sostenibile inizia oggi. Il futuro sostenibile inizia con te. Il futuro sostenibile è EcoMaker.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Script per download PDF
+        window.addEventListener('load', function() {
+            console.log('Documento Kickstarter EcoMaker caricato');
+            console.log('Per scaricare come PDF: Ctrl+P > Salva come PDF');
+        });
+    </script>
+</body>
+</html>

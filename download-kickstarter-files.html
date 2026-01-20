@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download File Kickstarter - EcoMaker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+        
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .file-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .file-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.1);
+        }
+        
+        .file-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .file-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+        }
+        
+        .file-description {
+            color: #94a3b8;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .download-icon {
+            margin-right: 8px;
+        }
+        
+        .stats-section {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #059669;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .files-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 EcoMaker Kickstarter</h1>
+            <p>Download dei documenti della campagna di crowdfunding</p>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Campagna Kickstarter in Numeri</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">€250K</div>
+                    <div class="stat-label">Goal Kickstarter</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">€59K</div>
+                    <div class="stat-label">Costi Sviluppo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25:1</div>
+                    <div class="stat-label">Ratio LTV/CAC</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">€2B</div>
+                    <div class="stat-label">Exit Target</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="files-grid">
+            <div class="file-card">
+                <div class="file-icon">📋</div>
+                <div class="file-title">Documento Campagna Completo</div>
+                <div class="file-description">
+                    Documento completo della campagna Kickstarter con analisi finanziaria, 
+                    livelli di donazione, timeline di sviluppo e roadmap prodotto.
+                </div>
+                <div class="file-meta">
+                    <span>📄 Markdown</span>
+                    <span>3.2 KB</span>
+                </div>
+                <a href="/api/kickstarter/download/EcoMaker_Kickstarter_Campaign.md" class="download-btn">
+                    <span class="download-icon">⬇️</span>
+                    Scarica Documento Campagna
+                </a>
+            </div>
+            
+            <div class="file-card">
+                <div class="file-icon">📊</div>
+                <div class="file-title">Executive Summary</div>
+                <div class="file-description">
+                    Riassunto esecutivo con proiezioni finanziarie, analisi di mercato, 
+                    competitive advantage e strategia di crescita per investitori.
+                </div>
+                <div class="file-meta">
+                    <span>📄 Markdown</span>
+                    <span>3.5 KB</span>
+                </div>
+                <a href="/api/kickstarter/download/EcoMaker_Executive_Summary.md" class="download-btn">
+                    <span class="download-icon">⬇️</span>
+                    Scarica Executive Summary
+                </a>
+            </div>
+            
+            <div class="file-card">
+                <div class="file-icon">🎨</div>
+                <div class="file-title">Presentazione PDF</div>
+                <div class="file-description">
+                    Template HTML per generazione presentazione PDF con design professionale, 
+                    grafici interattivi e layout ottimizzato per stampa.
+                </div>
+                <div class="file-meta">
+                    <span>🌐 HTML</span>
+                    <span>2.8 KB</span>
+                </div>
+                <a href="/api/kickstarter/download/generate_kickstarter_pdf.html" class="download-btn">
+                    <span class="download-icon">⬇️</span>
+                    Scarica Template PDF
+                </a>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Pronto a Supportare EcoMaker?</h2>
+            <p>Unisciti alla rivoluzione dell'upcycling sostenibile e aiutaci a trasformare il modo in cui il mondo gestisce i rifiuti.</p>
+            <a href="/kickstarter-demo" class="cta-button">
+                🚀 Prova Demo Completa - €2 Rimborsabile
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Add download tracking
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const filename = this.href.split('/').pop();
+                console.log(`Download iniziato: ${filename}`);
+                
+                // Optional: Add analytics tracking here
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'file_name': filename,
+                        'file_extension': filename.split('.').pop()
+                    });
+                }
+            });
+        });
+        
+        // Add hover effects
+        document.querySelectorAll('.file-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(30, 41, 59, 0.9)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(30, 41, 59, 0.8)';
+            });
+        });
+    </script>
+</body>
+</html>
