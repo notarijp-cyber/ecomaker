@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --- QUANTUM DARK THEME PALETTE (HSL) --- */
+    /* Background #0f111a converted to HSL */
+    --background: 229 27% 8%; 
+    --foreground: 210 40% 98%;
+
+    /* Card Darker #1a1d2d */
+    --card: 230 25% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 25% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Cyan Primary */
+    --primary: 189 100% 50%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    /* Purple Secondary */
+    --secondary: 270 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border Color (Dark Slate) */
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 189 100% 50%; /* Cyan Ring */
+    
+    --radius: 0.75rem;
+
+    /* --- VARIABILI CUSTOM FUTURISTICHE --- */
+    --cyber-blue: #00d4ff;
+    --neon-green: #39ff14;
+    --electric-purple: #bf00ff;
+    --plasma-pink: #ff0080;
+    --void-black: #0f111a;
+  }
+}
+
+/* GLOBAL RESET - SFONDO NERO OBBLIGATORIO */
+body, html, #root {
+  background-color: #0f111a !important;
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* --- EFFETTI QUANTUM (Glass, Glow, Neon) --- */
+
+/* Glass Morphism Dark */
+.glass-morph {
+  background: rgba(26, 29, 45, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Neon Borders */
+.neon-border-cyan {
+  border: 1px solid var(--cyber-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3), inset 0 0 5px rgba(0, 212, 255, 0.1);
+}
+
+.neon-border-purple {
+  border: 1px solid var(--electric-purple);
+  box-shadow: 0 0 10px rgba(191, 0, 255, 0.3), inset 0 0 5px rgba(191, 0, 255, 0.1);
+}
+
+/* Gradient Text */
+.text-gradient-quantum {
+  background: linear-gradient(135deg, var(--cyber-blue), var(--electric-purple), var(--neon-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes reverse-spin {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.animate-reverse-spin {
+  animation: reverse-spin 12s linear infinite;
+}
+
+/* Scrollbar Personalizzata Neon */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f111a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid #0f111a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+  box-shadow: 0 0 10px #06b6d4;
+}
+
+/* Utility per nascondere scrollbar ma permettere scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
